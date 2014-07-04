@@ -24,7 +24,6 @@ class Controller
      */
     private function openDatabaseConnection()
     {
-    	echo "good...";
         // set the (optional) options of the PDO connection. in this case, we set the fetch mode to
         // "objects", which means all results will be objects, like this: $result->user_name !
         // For example, fetch mode FETCH_ASSOC would return results like this: $result["user_name] !
