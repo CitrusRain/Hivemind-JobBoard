@@ -2,14 +2,63 @@
 
 <?php echo validation_errors(); ?>
 
-<?php echo form_open('news/create') ?>
 
-	<label for="title">Title</label>
-	<input type="input" name="title" /><br/>
+	<?php //Prepare the selectbox functionality
+	$listbox = "";	
+	foreach ($genericsets as $answerSet): 
+		
+		$listbox = $listbox.'
+			<option value="'.$answerSet['ID'].'">'.$answerSet['Handle'].'</option>';
+		
+		$JSarray[$answerSet['ID']] = ">".$answerSet['Answer1']."<br/>>"
+													.$answerSet['Answer2']."<br/>>"
+													.$answerSet['Answer3']."<br/>>"
+													.$answerSet['Answer4']."<br/>>"
+													.$answerSet['Answer5']."<br/>";	
+		
+		endforeach ?>
+
+<script type="text/javascript">
+//todo: replace with JQuery
+
+	var cars = new Array(new Array(0)<?php	foreach($JSarray as $cell): echo ',new Array("'.$cell.'")';	endforeach ?>	);
+
+	function showPresets()
+	{
+		var value = document.getElementById("type").value;
+		
+		if(value == "-1")
+		{	document.getElementById("answers").innerHTML = "";}
+		else if(value != "0")
+		{	document.getElementById("answers").innerHTML = cars[value];}
+		else if(value == "0")
+		{
+			document.getElementById("answers").innerHTML = 
+			"<label for='Answer1'>Option 1:</label><input type='text' name='Answer1'/><br/>" +	
+			"<label for='Answer2'>Option 2:</label><input type='text' name='Answer2'/><br/>" +	
+			"<label for='Answer3'>Option 3:</label><input type='text' name='Answer3'/><br/>" +	
+			"<label for='Answer4'>Option 4:</label><input type='text' name='Answer4'/><br/>" +
+			"<label for='Answer5'>Option 5:</label><input type='text' name='Answer5'/><br/>";
+		}
+		
+	}
+
+</script>
+
+<?php echo form_open('questions/create') ?>
 	
-	<label for="text">Text</label>
-	<textarea name="text"></textarea><br/>
-	
-	<input type="submit" name="submit" value="Create news item" />
+	<label for="contents">Question:</label>
+	<textarea name="contents"></textarea><br/>
+		
+	<label for="type">Preset answers:</label>
+	<select name="type" id="type" onchange="showPresets()">
+		<option value="-1">Select an answer set</option>
+		<option value="0">Custom</option>
+		<?php echo $listbox ?>
+	</select>
+	<div id="answers">	
+	</div>
+	<br/><br/>
+	<input type="submit" name="submit" value="Create new question" />
 	
 </form>

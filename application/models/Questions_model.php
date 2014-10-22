@@ -30,21 +30,49 @@ class Questions_model extends CI_Model {
 				'Type' => $this->input->post('type')
 			);
 			
-			return $this->db->insert('questions', $data);
+			$this->db->insert('questions', $data);
+			
+			$data2 = array(
+				'QuestionID' => $this->db->insert_id(),
+				'Answer1' => $this->input->post('Answer1'),			
+				'Answer2' => $this->input->post('Answer2'),			
+				'Answer3' => $this->input->post('Answer3'),			
+				'Answer4' => $this->input->post('Answer4'),			
+				'Answer5' => $this->input->post('Answer5')
+				);			
+	
+			return $this->db->insert('CustomAnswerSets', $data2);
+			
+			
 		}
 	
 		public function get_answers($qid, $aType = FALSE)
 		{
 			
-				if ($aType != "Custom")
+				if ($aType != "0")
 				{
-					$query = $this->db->get_where('GenericAnswerSets', array('Handle' => $aType));
+					$query = $this->db->get_where('GenericAnswerSets', array('ID' => $aType));
 						return $query->row_array();
 				}
-			
 				
-				$query = $this->db->get_where('questions', array('QuestionID' => $qid));
-				return $query->row_array();
+				$query = $this->db->get_where('CustomAnswerSets', array('QuestionID' => $qid));
+						return $query->row_array();
 		}
+	
+		//Get a listing of generic answer sets for when creating a question
+		public function get_GenericAnswerSets()
+		{
+				$query = $this->db->get('GenericAnswerSets');
+						return $query->result_array();	
+		}
+	
+	
 }
+
+
+
+
+
+
+
 ?>

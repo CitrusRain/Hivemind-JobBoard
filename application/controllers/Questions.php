@@ -43,6 +43,7 @@ class Questions extends CI_Controller {
 				$this->load->library('form_validation');
 				
 				$data['title'] = 'Create a question';
+				$data['genericsets'] = $this->questions_model->get_GenericAnswerSets();
 				
 				$this->form_validation->set_rules('contents', 'Contents', 'required');
 //				$this->form_validation->set_rules('text', 'text', 'required');
@@ -50,7 +51,7 @@ class Questions extends CI_Controller {
 				if ($this->form_validation->run() === FALSE)
 				{
 					$this->load->view('templates/header', $data);
-					$this->load->view('questions/create');
+					$this->load->view('questions/create', $data);
 					$this->load->view('templates/footer');
 				}
 				else
