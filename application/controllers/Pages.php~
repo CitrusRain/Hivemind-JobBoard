@@ -1,0 +1,9 @@
+<?php
+class Pages extends CI_Controller {
+//this controller will be the center of every request
+	public function view($page = 'home')
+	{
+			
+	}
+
+}

@@ -1,0 +1,5 @@
+<?php
+echo '<h2>'.$questions_item['Contents'].'</h2>';
+echo $questions_item['DatePosted'];
+echo $questions_item['answers']['Answer1'];
+?>
