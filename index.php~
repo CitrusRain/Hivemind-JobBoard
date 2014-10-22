@@ -117,7 +117,7 @@ switch (ENVIRONMENT)
  *
  * NO TRAILING SLASH!
  */
-	$view_folder = 'Hivemind-JobBoard';
+	$view_folder = '/var/www/Hivemind-JobBoard';
 
 
 /*
