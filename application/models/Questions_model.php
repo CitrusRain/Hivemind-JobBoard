@@ -19,7 +19,7 @@ class Questions_model extends CI_Model {
 				return $query->row_array();
 		}
 	
-		public function set_question() //Adds a question to the database
+		public function set_question() //Adds a question to the database, and any custom answers
 		{
 		//How websites make news posts with the title matching the url
 			//$this->load->helper('url');
@@ -30,7 +30,10 @@ class Questions_model extends CI_Model {
 				'Type' => $this->input->post('type')
 			);
 			
-			$this->db->insert('questions', $data);
+			if ($this->input->post('type') != "0")
+				return $this->db->insert('questions', $data);
+			else
+				$this->db->insert('questions', $data);
 			
 			$data2 = array(
 				'QuestionID' => $this->db->insert_id(),
@@ -64,6 +67,57 @@ class Questions_model extends CI_Model {
 		{
 				$query = $this->db->get('GenericAnswerSets');
 						return $query->result_array();	
+		}
+	
+		//Get question lists
+		public function get_QuestionLists($listOwnerID = FALSE, $listID = FALSE)
+		{
+			if ($listID != "0")
+			{
+				$query = $this->db->get_where('QuestionList', array('ListID' => $listID));
+				return $query->row_array();
+			}
+			if ($listOwnerID != "0")
+			{
+					$query = $this->db->get_where('QuestionList', array('ListOwnerID' => $listOwnerID));
+					return $query->row_array();
+			}
+			
+			$query = $this->db->get('QuestionList');
+			return $query->result_array();	
+	
+		}	
+	
+	
+		public function set_QuestionList() //Adds an empty question list to the database
+		{
+						
+			$data = array(
+				'ListName' => $this->input->post('ListName'),
+				'ListOwnerID' => 0
+			);
+			
+			$this->db->insert('QuestionList', $data);
+	
+			return $this->db->insert_id();			
+			
+		}
+	
+	
+		public function set_QuestionListItem($qid) //Adds a filled in QuestionListItem item to the list in the database
+		{
+						
+			$data = array(
+				'ListID' => $this->input->post('listlist'),
+				'QuestionID' => $qid,
+				'CorrectAnswer' => $this->input->post('answer'),
+				'PointsScored' => $this->input->post('pointvalue')
+			);
+			
+			$this->db->insert('QuestionListItem', $data);
+	
+			return $this->db->insert_id();			
+			
 		}
 	
 	

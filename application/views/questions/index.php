@@ -1,9 +1,11 @@
+<a href="makelist">Create List</a>
+<hr/>
 <?php foreach ($questions as $questions_item): ?>
 
-		<h2><?php echo $questions_item['Contents'] ?></h2>
 		<div class="main">
-				<?php echo $questions_item['DatePosted'] ?>
+			<h4><?php echo $questions_item['Contents'] ?></h4>
+			<sub>Type <?php echo $questions_item['Type'] ?> answerset.</sub>
+			<p><a href="<?php echo $questions_item['QuestionID'] ?>">View...</a></p>
 		</div>
-		<p><a href="<?php echo $questions_item['QuestionID'] ?>">View...</a></p>
-		
+		<hr/>
 <?php endforeach ?>

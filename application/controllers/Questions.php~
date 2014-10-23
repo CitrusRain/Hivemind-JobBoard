@@ -19,16 +19,19 @@ class Questions extends CI_Controller {
 	
 		public function view($qid = NULL)
 		{
+				$this->load->helper('form');
+				$this->load->library('form_validation');			
+			
 				$data['questions_item'] = $this->questions_model->get_questions($qid);
 				
 				if (empty($data['questions_item']))
 				{
 						//	show_404();
 				}
-				else if($data['questions_item']['Type'] != "Custom")
-				{
-					$data['questions_item']['answers'] = $this->questions_model->get_answers($qid, $data['questions_item']['Type']);			
-				} 
+				
+				//Add the answers to the data array
+				$data['questions_item']['answers'] = $this->questions_model->get_answers($qid, $data['questions_item']['Type']);			
+				 
 			
 				$data['title'] = $data['questions_item']['Contents'];
 				
@@ -51,7 +54,7 @@ class Questions extends CI_Controller {
 				if ($this->form_validation->run() === FALSE)
 				{
 					$this->load->view('templates/header', $data);
-					$this->load->view('questions/create');
+					$this->load->view('questions/create', $data);
 					$this->load->view('templates/footer');
 				}
 				else
@@ -59,6 +62,70 @@ class Questions extends CI_Controller {
 					$this->questions_model->set_question();
 					$this->load->view('questions/success');
 				}
+		}
+	
+		/*
+			Loads a form to create an empty list in the database 
+		*/
+		public function makelist()
+		{
+				$this->load->helper('form');
+				$this->load->library('form_validation');
+				
+				$data['title'] = 'Create a question';
+				$data['genericsets'] = $this->questions_model->get_GenericAnswerSets();
+				
+				$this->form_validation->set_rules('ListName', 'list name', 'required');
+//				$this->form_validation->set_rules('text', 'text', 'required');
+				
+				if ($this->form_validation->run() === FALSE)
+				{
+					$this->load->view('templates/header', $data);
+					$this->load->view('questions/makelist', $data);
+					$this->load->view('templates/footer');
+				}
+				else
+				{
+					$this->questions_model->set_QuestionList();
+					$this->load->view('questions/success');
+				}
+		}
+	
+		public function addtolist($qid = NULL)
+		{
+				$this->load->helper('form');
+				$this->load->library('form_validation');			
+			
+				$data['questions_item'] = $this->questions_model->get_questions($qid);
+				
+				if (empty($data['questions_item']))
+				{
+						show_404();
+				}
+				
+				//Add the answers to the data array
+				$data['questions_item']['answers'] = $this->questions_model->get_answers($qid, $data['questions_item']['Type']);			
+				$data['questionlists'] = $this->questions_model->get_QuestionLists();			
+				 
+			
+				$data['title'] = $data['questions_item']['Contents'];
+				
+				$this->form_validation->set_rules('answer', 'set answer', 'required');
+				$this->form_validation->set_rules('pointvalue', 'point value', 'required');
+				$this->form_validation->set_rules('listlist', 'list selection', 'required');
+				
+				if ($this->form_validation->run() === FALSE)
+				{
+					$this->load->view('templates/header', $data);
+					$this->load->view('questions/addtolist', $data);
+					$this->load->view('templates/footer');
+				}
+				else
+				{
+					$this->questions_model->set_QuestionListItem($qid);
+					$this->load->view('questions/success');
+				}
+			
 		}
 }
 ?>

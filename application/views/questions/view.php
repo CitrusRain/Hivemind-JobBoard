@@ -9,3 +9,7 @@ echo '<br/>'.$questions_item['answers']['Answer5'];
 
 echo '<br/><br/>Date posted: '.$questions_item['DatePosted'];
 ?>
+
+<hr/>
+<a href='addtolist/<?php echo $questions_item["QuestionID"] ?>'>Add this question to a list.</a>
+<br/><br/>

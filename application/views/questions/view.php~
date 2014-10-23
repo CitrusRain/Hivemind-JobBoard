@@ -1,5 +1,15 @@
 <?php
 echo '<h2>'.$questions_item['Contents'].'</h2>';
-echo $questions_item['DatePosted'];
-echo $questions_item['answers']['Answer1'];
+echo '<br/>'.$questions_item['answers']['Answer1'];
+echo '<br/>'.$questions_item['answers']['Answer2'];
+echo '<br/>'.$questions_item['answers']['Answer3'];
+echo '<br/>'.$questions_item['answers']['Answer4'];
+echo '<br/>'.$questions_item['answers']['Answer5'];
+
+
+echo '<br/><br/>Date posted: '.$questions_item['DatePosted'];
 ?>
+
+<hr/>
+<a href='addtolist'>Add this question to a list.</a>
+<br/><br/>

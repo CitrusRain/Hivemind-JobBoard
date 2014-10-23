@@ -1,1 +1,2 @@
 Success!
+<br/><a href="./">List Questions</a><br/><a href="create">Create another</a>
