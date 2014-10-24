@@ -83,6 +83,7 @@ $route['questions/create'] = 'questions/create';
 $route['questions/(:any)'] = 'questions/view/$1';
 $route['questions'] = 'questions';
 
+
 $route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = 'pages/view';
 

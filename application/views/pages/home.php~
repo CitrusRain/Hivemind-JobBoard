@@ -2,4 +2,11 @@ Currently available pages:
 
 <ul>
 <li><a href='index.php/questions/'>Questions</a></li>
+	<ul>
+		<li><a href='index.php/questions/create'>Create</a></li>
+		<li><a href='index.php/questions/lists/'>Lists</a></li>
+		<li><a href='index.php/questions/viewlists/'>View Lists</a></li>
+		<li><a href='index.php/questions/makelist'>Make new list</a></li>
+		<li>Add to a list</li>
+	</ul>
 </ul>
