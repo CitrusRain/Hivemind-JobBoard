@@ -1,0 +1,11 @@
+<a href="makelist">View all lists</a>
+<hr/>
+<?php foreach ($lists as $list): ?>
+
+		<div class="main">
+			<h4><?php echo $list['ListName'] ?></h4>
+			<sub>Owner ID: <?php echo $list['ListOwnerID'] ?></sub>
+			<p><a href="<?php echo $list['ListID'] ?>">View...</a></p>
+		</div>
+		<hr/>
+<?php endforeach ?>

@@ -103,6 +103,32 @@ class Questions_model extends CI_Model {
 			
 		}
 	
+		//Get question list items
+		public function get_QuestionListItems($listID)
+		{
+			if ($listID != "0")
+			{
+				$query = $this->db->get_where('QuestionListItem', array('ListID' => $listID));
+				return $query->row_array();
+			}
+		}	
+	
+		public function set_QuestionListItem($qid) //Adds a filled in QuestionListItem item to the list in the database
+		{
+						
+			$data = array(
+				'ListID' => $this->input->post('listlist'),
+				'QuestionID' => $qid,
+				'CorrectAnswer' => $this->input->post('answer'),
+				'PointsScored' => $this->input->post('pointvalue')
+			);
+			
+			$this->db->insert('QuestionListItem', $data);
+	
+			return $this->db->insert_id();			
+			
+		}
+	
 	
 }
 

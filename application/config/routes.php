@@ -78,6 +78,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['questions/addtolist/(:any)'] = 'questions/addtolist/$1';
 $route['questions/addtolist'] = 'questions/addtolist';
 $route['questions/makelist'] = 'questions/makelist';
+$route['questions/viewlists'] = 'questions/viewlists';
 $route['questions/create'] = 'questions/create';
 $route['questions/(:any)'] = 'questions/view/$1';
 $route['questions'] = 'questions';

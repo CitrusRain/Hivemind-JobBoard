@@ -1,19 +1,19 @@
 <?php
-class Questions extends CI_Controller {
+class Lists extends CI_Controller {
 
 		public function __construct()
 		{
 				parent::__construct();
-				$this->load->model('questions_model');
+				$this->load->model('lists_model');
 		}
 	
 		public function index()
 		{
-				$data['questions'] = $this->questions_model->get_questions();
-				$data['title'] = 'Questions archive';
+				$data['QuestionLists'] = $this->Lists_model->get_QuestionLists();
+				$data['title'] = 'Lists archive';
 				
 				$this->load->view('templates/header', $data);
-				$this->load->view('questions/index', $data);
+				$this->load->view('lists/index', $data);
 				$this->load->view('templates/footer');
 		}
 	
@@ -36,73 +36,9 @@ class Questions extends CI_Controller {
 				$data['title'] = $data['questions_item']['Contents'];
 				
 				$this->load->view('templates/header', $data);
-				$this->load->view('questions/view', $data);
+				$this->load->view('lists/view', $data);
 				$this->load->view('templates/footer');
 		}
-	
-		public function create()
-		{
-				$this->load->helper('form');
-				$this->load->library('form_validation');
-				
-				$data['title'] = 'Create a question';
-				$data['genericsets'] = $this->questions_model->get_GenericAnswerSets();
-				
-				$this->form_validation->set_rules('contents', 'Contents', 'required');
-//				$this->form_validation->set_rules('text', 'text', 'required');
-				
-				if ($this->form_validation->run() === FALSE)
-				{
-					$this->load->view('templates/header', $data);
-					$this->load->view('questions/create', $data);
-					$this->load->view('templates/footer');
-				}
-				else
-				{
-					$this->questions_model->set_question();
-					$this->load->view('questions/success');
-				}
-		}
-	
-	
-		/*
-			Shows all lists
-			TODO: update so that it shows only the lists the current user owns
-		*/	
-		public function viewlists($lid = NULL)
-		{
-				//$data['questions_item'] = $this->questions_model->get_questions($qid);
-				$this->load->helper('url');
-				if (!$lid)
-				{
-						$data['QuestionLists'] = $this->questions_model->get_QuestionLists();
-						$data['title'] = 'Lists';
-						$data['function'] = 'QuestionLists';
-						
-						$this->load->view('templates/header', $data);
-						$this->load->view('questions/viewlists', $data);
-						$this->load->view('templates/footer');
-				}
-				else
-				{
-				//Add the answers to the data array
-				//$data['questions_item']['answers'] = $this->questions_model->get_answers($qid, $data['questions_item']['Type']);			
-				 
-			
-				//$data['title'] = $data['questions_item']['Contents'];
-						$data['QuestionListItems'] = $this->questions_model->get_QuestionListItems($lid);
-						$data['title'] = 'Lists';
-						$data['function'] = 'QuestionListItems';
-						
-						$this->load->view('templates/header', $data);
-						$this->load->view('questions/viewlists', $data);
-						$this->load->view('templates/footer');
-				}
-				
-				
-				
-		}	
-	
 	
 		/*
 			Loads a form to create an empty list in the database 
@@ -111,6 +47,7 @@ class Questions extends CI_Controller {
 		{
 				$this->load->helper('form');
 				$this->load->library('form_validation');
+				$this->load->model('questions_model');
 				
 				$data['title'] = 'Create a question';
 				$data['genericsets'] = $this->questions_model->get_GenericAnswerSets();
@@ -121,13 +58,13 @@ class Questions extends CI_Controller {
 				if ($this->form_validation->run() === FALSE)
 				{
 					$this->load->view('templates/header', $data);
-					$this->load->view('questions/makelist', $data);
+					$this->load->view('lists/create', $data);
 					$this->load->view('templates/footer');
 				}
 				else
 				{
 					$this->questions_model->set_QuestionList();
-					$this->load->view('questions/success');
+					$this->load->view('lists/success');
 				}
 		}
 	
@@ -145,7 +82,7 @@ class Questions extends CI_Controller {
 				
 				//Add the answers to the data array
 				$data['questions_item']['answers'] = $this->questions_model->get_answers($qid, $data['questions_item']['Type']);			
-				$data['questionlists'] = $this->questions_model->get_QuestionLists();			
+				$data['questionlists'] = $this->lists_model->get_QuestionLists();			
 				 
 			
 				$data['title'] = $data['questions_item'];//['Contents'];
@@ -157,13 +94,13 @@ class Questions extends CI_Controller {
 				if ($this->form_validation->run() === FALSE)
 				{
 					$this->load->view('templates/header', $data);
-					$this->load->view('questions/addtolist', $data);
+					$this->load->view('lists/add', $data);
 					$this->load->view('templates/footer');
 				}
 				else
 				{
 					$this->questions_model->set_QuestionListItem($qid);
-					$this->load->view('questions/success');
+					$this->load->view('lists/success');
 				}
 			
 		}

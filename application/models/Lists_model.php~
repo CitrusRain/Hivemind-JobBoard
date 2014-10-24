@@ -103,15 +103,6 @@ class Questions_model extends CI_Model {
 			
 		}
 	
-		//Get question list items
-		public function get_QuestionListItems($listID)
-		{
-			if ($listID != "0")
-			{
-				$query = $this->db->get_where('QuestionListItem', array('ListID' => $listID));
-				return $query->result_array();
-			}
-		}	
 	
 		public function set_QuestionListItem($qid) //Adds a filled in QuestionListItem item to the list in the database
 		{

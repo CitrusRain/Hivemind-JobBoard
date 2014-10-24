@@ -64,6 +64,46 @@ class Questions extends CI_Controller {
 				}
 		}
 	
+	
+		/*
+			Shows all lists
+			TODO: update so that it shows only the lists the current user owns
+		*/	
+		public function viewlists($lid = NULL)
+		{
+				//$data['questions_item'] = $this->questions_model->get_questions($qid);
+				
+				if (!$lid)
+				{
+						$data['QuestionLists'] = $this->questions_model->get_QuestionLists();
+						$data['title'] = 'Lists';
+						$data['function'] = 'QuestionLists';
+						
+						$this->load->view('templates/header', $data);
+						$this->load->view('questions/viewlists', $data);
+						$this->load->view('templates/footer');
+				}
+				else
+				{
+				//Add the answers to the data array
+				//$data['questions_item']['answers'] = $this->questions_model->get_answers($qid, $data['questions_item']['Type']);			
+				 
+			
+				//$data['title'] = $data['questions_item']['Contents'];
+						$data['QuestionListItems'] = $this->questions_model->get_QuestionListItems($lid);
+						$data['title'] = 'Lists';
+						$data['function'] = 'QuestionListItems';
+						
+						$this->load->view('templates/header', $data);
+						$this->load->view('questions/viewlists', $data);
+						$this->load->view('templates/footer');
+				}
+				
+				
+				
+		}	
+	
+	
 		/*
 			Loads a form to create an empty list in the database 
 		*/
@@ -108,7 +148,7 @@ class Questions extends CI_Controller {
 				$data['questionlists'] = $this->questions_model->get_QuestionLists();			
 				 
 			
-				$data['title'] = $data['questions_item']['Contents'];
+				$data['title'] = $data['questions_item'];//['Contents'];
 				
 				$this->form_validation->set_rules('answer', 'set answer', 'required');
 				$this->form_validation->set_rules('pointvalue', 'point value', 'required');
