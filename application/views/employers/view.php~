@@ -1,0 +1,13 @@
+<?php
+echo '<h2>'.$employers_item['Title'].'</h2>';
+echo '<b>Location: '.$employers_item['Location'].'</b><br/>';
+
+echo '<br/><br/>EIN: '.$employers_item['EmployerIdentificationNumber'];
+
+echo '<br/><br/>QuestionList1: '.$employers_item['QuestionList1'];
+echo '<br/><br/>QuestionList2: '.$employers_item['QuestionList2'];
+
+echo '<br/><br/>Date joined: '.$employers_item['DatePosted'];
+?>
+
+<br/><br/>
