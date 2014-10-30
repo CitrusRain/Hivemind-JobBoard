@@ -2,6 +2,14 @@
 
 <?php echo validation_errors(); ?>
 
+<?php //Prepare the selectbox functionality
+	$listbox = "";	
+	foreach ($questionlists as $questionlist): 
+		
+		$listbox = $listbox.'
+			<option value="'.$questionlist['ListID'].'">'.$questionlist['ListName'].'</option>';
+		
+		endforeach ?>
 
 <?php echo form_open('jobs/create') ?>
 	
@@ -23,21 +31,17 @@
 	<label for="QuestionList1">*Question List:</label>
 	<select name="QuestionList1">
 		<option value="">Select a question list</option>
-		<option value="1">(this option is hardcoded) QuestionListID = 1</option>
-		<option value="2">(this option is hardcoded) QuestionListID = 2</option>
-		<option value="3">(this option is hardcoded) QuestionListID = 3</option>
+		<?php echo $listbox ?>
 	</select><br/>
 
 	<label for="QuestionList2">Question List 2 (optional):</label>
 	<select name="QuestionList2">
 		<option value="">Select a question list</option>
-		<option value="1">(this option is hardcoded) QuestionListID = 1</option>
-		<option value="2">(this option is hardcoded) QuestionListID = 2</option>
-		<option value="3">(this option is hardcoded) QuestionListID = 3</option>
+		<?php echo $listbox ?>
 	</select><br/>
 	
 	
 	<br/><br/>
-	<input type="submit" name="submit" value="Create new question" />
+	<input type="submit" name="submit" value="List Job" />
 	
 </form>

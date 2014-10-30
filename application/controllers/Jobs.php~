@@ -5,11 +5,12 @@ class Jobs extends CI_Controller {
 		{
 				parent::__construct();
 				$this->load->model('jobs_model');
+				$this->load->model('questions_model');
 		}
 	
 		public function index()
 		{
-				$data['jobs'] = $this->questions_model->get_questions();
+				$data['jobs'] = $this->jobs_model->get_jobs();
 				$data['title'] = 'jobs archive';
 				
 				$this->load->view('templates/header', $data);

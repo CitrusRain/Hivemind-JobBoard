@@ -5,6 +5,7 @@ class Jobs extends CI_Controller {
 		{
 				parent::__construct();
 				$this->load->model('jobs_model');
+				$this->load->model('questions_model');
 		}
 	
 		public function index()
@@ -51,6 +52,8 @@ class Jobs extends CI_Controller {
 				
 				if ($this->form_validation->run() === FALSE)
 				{
+					$data['questionlists'] = $this->questions_model->get_QuestionLists();
+					
 					$this->load->view('templates/header', $data);
 					$this->load->view('jobs/create', $data);
 					$this->load->view('templates/footer');
