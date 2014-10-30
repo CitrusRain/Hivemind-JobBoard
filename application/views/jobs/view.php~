@@ -1,6 +1,6 @@
 <?php
 echo '<h2>'.$jobs_item['Title'].'</h2>';
-echo '<b>'.$jobs_item['Title'].'</b><br/>';
+echo '<b>'.$jobs_item['Location'].'</b><br/>';
 
 echo $jobs_item['Description'];
 

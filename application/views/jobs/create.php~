@@ -42,6 +42,6 @@
 	
 	
 	<br/><br/>
-	<input type="submit" name="submit" value="Create new question" />
+	<input type="submit" name="submit" value="List Job" />
 	
 </form>

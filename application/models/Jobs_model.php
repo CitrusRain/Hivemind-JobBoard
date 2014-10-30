@@ -23,7 +23,7 @@ class Jobs_model extends CI_Model {
 		{
 			
 			$data = array(
-				'EmployerIdentificationNumber' => $this->input->post('EIN'),
+				'EmployerID' => $this->input->post('EmployerID'),
 				'Title' => $this->input->post('jobtitle'),
 				'Location' => $this->input->post('location'),
 				'Description' => $this->input->post('description'),

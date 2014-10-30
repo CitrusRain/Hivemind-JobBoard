@@ -14,8 +14,8 @@
 <?php echo form_open('jobs/create') ?>
 	
 	<div border="1">
-	<label for="EIN">*Employer Identification Number:</label>
-	<input type="text" value="1" name="EIN"/><br/>
+	<label for="EmployerID">*Employer ID:</label>
+	<input type="text" value="1" name="EmployerID"/><br/>
 	<sub>Will be based on a value of the logged in client</sub>
 	</div>
 

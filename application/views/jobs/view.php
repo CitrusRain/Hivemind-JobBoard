@@ -8,7 +8,7 @@ echo '<br/><br/>QuestionList1: '.$jobs_item['QuestionList1'];
 echo '<br/><br/>QuestionList2: '.$jobs_item['QuestionList2'];
 
 echo '<br/><br/>Date posted: '.$jobs_item['DatePosted'];
-echo '<br/><br/>EIN: '.$jobs_item['EmployerIdentificationNumber'];
+echo '<br/><br/>Employer ID: '.$jobs_item['EmployerID'];
 ?>
 
 <br/><br/>
