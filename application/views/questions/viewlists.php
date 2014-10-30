@@ -1,5 +1,5 @@
 <?php if ($function == 'QuestionLists'):?>
-<a href="makelist">View all lists</a>
+<h3>Viewing all lists</h3>
 <hr/>
 <?php foreach ($QuestionLists as $list): ?>
 
@@ -12,7 +12,8 @@
 <?php endforeach;
 	endif;?>
 <?php if ($function == 'QuestionListItems'):?>
-<a href="makelist">View list contents</a>
+<a href="../viewlists/">View all lists</a>
+<h3>Viewing list contents</h3>
 <hr/>
 <?php foreach ($QuestionListItems as $listitem): ?>
 

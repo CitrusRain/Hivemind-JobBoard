@@ -75,7 +75,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-$route['sitemap'] = 'sitemap';
 $route['questions/addtolist/(:any)'] = 'questions/addtolist/$1';
 $route['questions/addtolist'] = 'questions/addtolist';
 $route['questions/makelist'] = 'questions/makelist';
