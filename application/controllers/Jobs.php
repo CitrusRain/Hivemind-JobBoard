@@ -6,6 +6,7 @@ class Jobs extends CI_Controller {
 				parent::__construct();
 				$this->load->model('jobs_model');
 				$this->load->model('questions_model');
+				$this->load->model('employers_model');
 		}
 	
 		public function index()
@@ -24,12 +25,12 @@ class Jobs extends CI_Controller {
 				$this->load->library('form_validation');			
 			
 				$data['jobs_item'] = $this->jobs_model->get_jobs($JobID);
+				$data['employers_item'] = $this->employers_model->get_employers($data['jobs_item']['EmployerID']);
 				
 				if (empty($data['jobs_item']))
 				{
 						//	show_404();
 				}
-								 
 			
 				$data['title'] = $data['jobs_item']['Title'];
 				
