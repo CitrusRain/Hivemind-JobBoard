@@ -90,6 +90,9 @@ $route['jobs'] = 'jobs';
 $route['employers/(:any)'] = 'employers/view/$1';
 $route['employers'] = 'employers';
 
+$route['users/(:any)'] = 'users/view/$1';
+$route['users'] = 'users';
+
 $route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = 'pages/view';
 

@@ -82,7 +82,7 @@ $route['questions/viewlists'] = 'questions/viewlists';
 $route['questions/create'] = 'questions/create';
 $route['questions/(:any)'] = 'questions/view/$1';
 $route['questions'] = 'questions';
-employers
+
 $route['jobs/create'] = 'jobs/create';
 $route['jobs/(:any)'] = 'jobs/view/$1';
 $route['jobs'] = 'jobs';
