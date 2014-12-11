@@ -1,0 +1,10 @@
+<?php
+echo '<h2>'.$users_item['UserFName'].' '.$users_item['UserLName'].'</h2>';
+echo '<b>Location: '.$users_item['ZipCode'].'</b><br/>';
+
+echo '<br/><br/>A field:<br/>'.$users_item[''];
+
+echo '<br/><br/>Date joined: '.$users_item['JoinDate'];
+?>
+
+<br/><br/>
