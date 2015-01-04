@@ -6,6 +6,27 @@ class Users_model extends CI_Model {
 			$this->load->database();
 		}
 	
+		//Logs in the user.
+		function login($username, $password)
+		{
+			$this->db->select('ID, UserAlias, Password');	
+			$this->db->from('Users');
+			$this->db->where('UserAlias', $username);
+			$this->db->where('Password', $password);
+			$this->db->limit(1);
+			
+			$query = $this->db->get();
+			
+			if($query->num_rows() == 1)
+			{
+				return $query->result();
+			}
+			else
+			{
+				return false;
+			}
+		}
+	
 		public function get_users($UserID = FALSE)
 		{
 			
