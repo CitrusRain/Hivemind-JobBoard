@@ -93,8 +93,12 @@ $route['employers'] = 'employers';
 $route['users/(:any)'] = 'users/view/$1';
 $route['users'] = 'users';
 
+$route['verifylogin'] = 'verifylogin';
+$route['login'] = 'login';
+
 $route['(:any)'] = 'pages/view/$1';
-$route['default_controller'] = 'pages/view';
+//$route['default_controller'] = 'pages/view';
+$route['default_controller'] = 'login';
 
 //$route['default_controller'] = 'welcome';
 //$route['404_override'] = '';
